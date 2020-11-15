@@ -1,0 +1,68 @@
+@import "helpers/vars";
+@import "helpers/mixins";
+@import "helpers/fonts";
+@import "helpers/sprite";
+
+html {
+	font-family: 'Tahoma', Arial, serif;
+	font-size: 16px;
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	scroll-behavior: smooth;
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
+	overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	color: $color-white;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+img {
+	max-width: 100%;
+	display: block;
+}
+
+input,
+button,
+textarea,
+select { font: inherit; }
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video,
+textarea { vertical-align: middle; }
+
+textarea { resize: none; }
+
+section { position: relative; }
+
+input,
+select,
+button { outline: none; }
+
+.is-hidden {
+	display: none !important;
+}
+
+.is-visible {
+	display: flex !important;
+	z-index: 10;
+}
