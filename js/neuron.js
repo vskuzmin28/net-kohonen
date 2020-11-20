@@ -1,48 +1,73 @@
+// Количество классов
 const N = [3];
-/*
-  Блок получения выборки данных за перод с 2016 по 2019 годы
-*/
-  let huntingResource_2016 = Object.values(hunt_2016[46]).filter( (value,indexValue) => indexValue>2  && indexValue != 29 ).map(value => Number(value)), // Получаем выборку по зайцам за 2016
-      huntingResource_2017 = Object.values(hunt_2017[45]).filter( (value,indexValue) => indexValue>2  && indexValue != 29 ).map(value => Number(value)), // Получаем выборку по зайцам за 2017
-      huntingResource_2018 = Object.values(hunt_2018[45]).filter( (value,indexValue) => indexValue>2  && indexValue != 29 ).map(value => Number(value)), // Получаем выборку по зайцам за 2018
-      huntingResource_2019 = Object.values(hunt_2019[45]).filter( (value,indexValue) => indexValue>2  && indexValue != 29 ).map(value => Number(value)), // Получаем выборку по зайцам за 2019
-/*
-  END:Блок получения выборки данных за перод с 2016 по 2019 годы
-*/
- areasName = Object.keys(hunt_2019[45]).filter( (value,indexValue) => indexValue>2 && indexValue != 29); // Получаем название районов
-let L = N.length,  
-  Ts = [],        //  Обучающая выборка (нормализованные данные)
-  secondTs = [],  //  Обучающая выборка (исходные данные)
-  classes = [],   //  Данные разбитые по классам
-  colors = ["green","yellow","maroon","red","snow","purple","blue","lightGreen"]; // Цвета для возможных классов
+
+// Блок получения выборки данных за перод с 2016 по 2019 годы
+let huntingResource_2016 = Object.values(hunt_2016[46]).filter( (value,indexValue) => indexValue>4  && indexValue != 29 ).map(value => Number(value)),
+    huntingResource_2017 = Object.values(hunt_2017[45]).filter( (value,indexValue) => indexValue>4  && indexValue != 29 ).map(value => Number(value)),
+    huntingResource_2018 = Object.values(hunt_2018[45]).filter( (value,indexValue) => indexValue>4  && indexValue != 29 ).map(value => Number(value)),
+    huntingResource_2019 = Object.values(hunt_2019[45]).filter( (value,indexValue) => indexValue>4  && indexValue != 29 ).map(value => Number(value)),
+
+    // Получаем название районов
+    areasName = Object.keys(hunt_2019[45]).filter( (value,indexValue) => indexValue>4 && indexValue != 29);
+let 
+  L = N.length,
+
+  //  Обучающая выборка (нормализованные данные)
+  Ts = [],
+
+  //  Обучающая выборка (исходные данные)
+  secondTs = [],
+
+  //  Данные разбитые по классам
+  classes = [],
+
+  // Цвета для возможных классов
+  colors = [
+    "green",
+    "yellow",
+    "maroon",
+    "red",
+    "snow",
+    "purple",
+    "blue",
+    "lightGreen"
+  ];
 
 function cArr() {
-  /*
-    Наполнение массива примеров обучающей выборки.
-  */
-  let sum2016 = 0, // Массив для суммы квадратов данных за 2016
-      sum2017 = 0, // Массив для суммы квадратов данных за 2017
-      sum2018 = 0, // Массив для суммы квадратов данных за 2018
-      sum2019 = 0; // Массив для суммы квадратов данных за 2019
-  for(let i=0;i<huntingResource_2016.length;i++) // Пробегаемся по всем примерам из обучающей выборки
-  {   
-    secondTs.push([huntingResource_2016[i],huntingResource_2017[i],huntingResource_2018[i],huntingResource_2019[i]]);   // Наполняем массив исходными значениями обучающей выборки
-    sum2016 += huntingResource_2016[i]**2;  //  Суумирование вкадратов данных за 2016
-    sum2017 += huntingResource_2017[i]**2;  //  Суумирование вкадратов данных за 2017
-    sum2018 += huntingResource_2018[i]**2;  //  Суумирование вкадратов данных за 2018
-    sum2019 += huntingResource_2019[i]**2;  //  Суумирование вкадратов данных за 2019
+  //Наполнение массива примеров обучающей выборки.
+  // Массив для суммы квадратов данных за 2016 - 19года
+  let sum2016 = 0,
+      sum2017 = 0,
+      sum2018 = 0,
+      sum2019 = 0; 
+
+  // Пробегаемся по всем примерам из обучающей выборки
+  for(let i=0;i<huntingResource_2016.length;i++) {
+    // Наполняем массив исходными значениями обучающей выборки
+    secondTs.push([huntingResource_2016[i],huntingResource_2017[i],huntingResource_2018[i],huntingResource_2019[i]]);
+
+    //  Суумирование вкадратов данных за 2016 - 19года
+    sum2016 += huntingResource_2016[i]**2;  
+    sum2017 += huntingResource_2017[i]**2;
+    sum2018 += huntingResource_2018[i]**2;
+    sum2019 += huntingResource_2019[i]**2;
   }
-  secondTs.forEach(  (value, indexValue ) => Ts.push( [value[0]/ Math.sqrt(sum2016),      //  Нормализация
-                                                       value[1]/ Math.sqrt(sum2017),        //  данных
-                                                       value[2]/ Math.sqrt(sum2018),          //  по каждому
-                                                       value[3]/ Math.sqrt(sum2019)] ) )         //  году
+
+  // Нормализация данных по каждому году
+  secondTs.forEach(  (value, indexValue ) => Ts.push( [value[0]/ Math.sqrt(sum2016),
+                                                       value[1]/ Math.sqrt(sum2017),
+                                                       value[2]/ Math.sqrt(sum2018),
+                                                       value[3]/ Math.sqrt(sum2019)] ) )
   areasName.forEach( (value,indexValue) => {
     //  Формирование строки таблицы с данными по району
     let td = "<td>"+value+"</td> <td>"+secondTs[indexValue][0]+"</td> <td>"+secondTs[indexValue][1]+"</td> <td>"+secondTs[indexValue][2]+"</td> <td>"+secondTs[indexValue][3]+"</td>";
     document.querySelector(".visual tbody").innerHTML += "<tr class='area "+value+"'>"+td+"</tr>"; // Добавление строки в таблицу
-  } )
-  learn() 
+  })
+  learn(
+    console.log(amountClasses())
+  )
 }
+
 function rnd(min, max) {
   /*
     Функция случайного числа в диапазоне min - max
@@ -64,11 +89,14 @@ class Neuron {
     this.w = Array(w).fill(0).map((value, index) => rnd(0.05, 0.39)); // Инициализируем массив весовых коэффициентов
   }
 }
+
 // Создаем нейронную сеть из экемпляров класса Neuron
 let neurons = Array(N.length).fill(0).map( (layer,indexLayer ) => { // Создаем N.length слоёв
       // Возвращаем слой с наполненным количеством N[indexLayer] нейронов
-      return Array(N[indexLayer]).fill(0).map((neuron,ndexNeuron ) => { // Создаем N[indexLayer] нейронов в слое
-            return new Neuron(indexLayer == 0 ? 4 : N[indexLayer - 1]); // Возвращаем экземпляр класса нового нейрона
+      // Создаем N[indexLayer] нейронов в слое
+      return Array(N[indexLayer]).fill(0).map((neuron,ndexNeuron ) => {
+            // Возвращаем экземпляр класса нового нейрона
+            return new Neuron(indexLayer == 0 ? 4 : N[indexLayer - 1]);
           }
         );
     }
@@ -163,14 +191,16 @@ function belong(x, index, action = 1) {
     classes = neurons[0].map(value => []); // Очищаем классы
   }
 }
+
+// Функция определения количества элементов в каждом классе
 function amountClasses() {
-  /*
-    Функция определения количества элементов в каждом классе
-  */
-  belong(0, 0, 0); // Очищаем классы
-  Ts.forEach((value, indexValue) => belong(value, indexValue)); // Относим каждое входное воздействие в соответствующий класс
+  // Очищаем классы
+  belong(0, 0, 0);
+  // Относим каждое входное воздействие в соответствующий класс
+  Ts.forEach((value, indexValue) => belong(value, indexValue));
   return classes.map(value => value.length); // Возвращаем список состоящий из количества элементов в каждом клссе
 }
+
 function learn(action = 0, a = 0.3, b = 0.001, number = 10) {
   /*
     Процедру запуска алгоритма обучения нейронной сети
@@ -190,10 +220,13 @@ function learn(action = 0, a = 0.3, b = 0.001, number = 10) {
         i < number;
         i++ //Пробегаемся по всем эпохам
       ) {
-        // Перебираем все примеры из обучающей выборки, и подаем на вход функции hebba случайные значения из неё
+        // Перебираем все примеры из обучающей выборки, и подаем на вход функции случайные значения из неё
         Ts.forEach((x, index) => {
           layerTraining(a, Ts[parseInt(Math.random() * Ts.length)]);
+
+          console.log(x, a, b, number)
         });
+
       }
       a -= b; // Уменьшаем коэффициент скорости обучения
     }
@@ -219,9 +252,9 @@ function learn(action = 0, a = 0.3, b = 0.001, number = 10) {
           })
       );
       answer(classIndex, row); // Закрашиваем ячейку
-    
   }
   google.charts.setOnLoadCallback(drawChart); //Отображаем график
+  
 }
 function answer(index, indexRow) {
   /*
@@ -231,10 +264,16 @@ function answer(index, indexRow) {
     x     : тип данных (целочисленный) - координата x ячейки
     y     : тип данных (целочисленный) - координата y ячейки
   */
-  let row = document.querySelector("."+areasName[indexRow]); // Получаем строку
-  row.classList.toggle(colors[index]); // Закрашиваем ячейку соответствующим цветом по номеру класса
+
+  // Получаем строку
+  let row = document.querySelector("."+areasName[indexRow]);
+
+  // Закрашиваем ячейку соответствующим цветом по номеру класса
+  row.classList.toggle(colors[index]);
 }
 
+
+// GOOGLE GRAPHICS
 google.charts.load("current", { packages: ["corechart"] });
 function drawChart() {
   let results = [["Iteration", "Network response"]],
@@ -245,21 +284,24 @@ function drawChart() {
       indexTrain++;
     })
   );
-  var data = google.visualization.arrayToDataTable(results);
 
-  var options = {
+  let data = google.visualization.arrayToDataTable(results);
+
+  let options = {
     title: "Result",
     hAxis: { title: "Class" },
     vAxis: { title: "Value for 2016 year" },
     legend: "none"
   };
 
-  var chart = new google.visualization.ScatterChart(
+  let chart = new google.visualization.ScatterChart(
     document.querySelector(".network-answers")
   );
 
   chart.draw(data, options);
 }
+
+//  Проведение инициализации и наполнения массива обучающей выборки при загрузке страницы
 window.onload = () => {
   cArr();
-}; //  Проведение инициализации и наполнения массива обучающей выборки при загрузке страницы
+};
