@@ -43,6 +43,7 @@ function cArr() {
 
   // Пробегаемся по всем примерам из обучающей выборки
   for(let i=0;i<huntingResource_2016.length;i++) {
+
     // Наполняем массив исходными значениями обучающей выборки
     secondTs.push([huntingResource_2016[i],huntingResource_2017[i],huntingResource_2018[i],huntingResource_2019[i]]);
 
@@ -59,13 +60,14 @@ function cArr() {
                                                        value[2]/ Math.sqrt(sum2018),
                                                        value[3]/ Math.sqrt(sum2019)] ) )
   areasName.forEach( (value,indexValue) => {
+
     //  Формирование строки таблицы с данными по району
     let td = "<td>"+value+"</td> <td>"+secondTs[indexValue][0]+"</td> <td>"+secondTs[indexValue][1]+"</td> <td>"+secondTs[indexValue][2]+"</td> <td>"+secondTs[indexValue][3]+"</td>";
-    document.querySelector(".visual tbody").innerHTML += "<tr class='area "+value+"'>"+td+"</tr>"; // Добавление строки в таблицу
+
+    // Добавление строки в таблицу
+    document.querySelector(".visual tbody").innerHTML += "<tr class='area "+value+"'>"+td+"</tr>";
   })
-  learn(
-    console.log(amountClasses())
-  )
+  learn()
 }
 
 function rnd(min, max) {
@@ -84,8 +86,12 @@ class Neuron {
     Аргументы:
     w : тип данных (целое число) - количество синапсов у данного нейрона
   */
-  constructor(w,a) // Инициализация переменных для нейрона
+ // Инициализация переменных для нейрона
+  constructor(w,a)
   {
+    // 0.05 - минимальный элемент обучающей выборки
+    // 0.39 - максимальный элемент обучающей выборки
+    // В этом диапозоне получаем случайные весовые коэффиенты, чтобы нейроны не выбивались и какой-то нейрон не выходил в насыщение
     this.w = Array(w).fill(0).map((value, index) => rnd(0.05, 0.39)); // Инициализируем массив весовых коэффициентов
   }
 }
@@ -143,21 +149,35 @@ function neuronWinner(y, layer = 0) {
     y     : тип данных (список) - входное воздействие
     layer : тип данных (целое) - номер слоя, по умолчанию первый слой
   */
-  let D = []; //Список для хранения растояний между нейронами и входным воздействием
+
+  //Список для хранения растояний между нейронами и входным воздействием
+  let D = [];
   neurons[layer].forEach((
     neuron,
-    indexNeuron // Перебор всех нейронов
+
+    // Перебор всех нейронов
+    indexNeuron
   ) => {
-    let s = 0; // Инициализация переменной для суммирования
+
+    // Инициализация переменной для суммирования
+    let s = 0;
     y.forEach((
       input,
-      indexInput // Перебор данных входного воздействия
+
+      // Перебор данных входного воздействия
+      indexInput
     ) => {
-      s += (input - neuron["w"][indexInput]) ** 2; // Суммирование разности квадратов
+
+      // Суммирование разности квадратов
+      s += (input - neuron["w"][indexInput]) ** 2;
     });
-    D.push(Math.sqrt(s)); // Добавление расстояния в список
+
+    // Добавление расстояния в список
+    D.push(Math.sqrt(s));
   });
-  return indexMinimum(D); // Возвращение индекса победившего нейрона
+
+  // Возвращение индекса победившего нейрона
+  return indexMinimum(D);
 }
 
 function layerTraining(a, x) {
@@ -167,8 +187,14 @@ function layerTraining(a, x) {
     a     : тип данных (вещественное) - коэффициент скорость обучения
     x     : тип данных (список) - входное воздействие
   */
-  let indexNeuron = neuronWinner(x); // Получение индекса победившего нейрона
-  kohonen(a, neurons[0][indexNeuron]["w"], x); // Уменьшение расстояния между нейроном и входным воздействием
+
+  // Получение индекса победившего нейрона
+  let indexNeuron = neuronWinner(x);
+
+  // Уменьшение расстояния между нейроном и входным воздействием
+  kohonen(a, neurons[0][indexNeuron]["w"], x);
+
+  console.log('Индекс победившего нейрона: ' + indexNeuron);
 }
 
 function belong(x, index, action = 1) {
@@ -196,9 +222,12 @@ function belong(x, index, action = 1) {
 function amountClasses() {
   // Очищаем классы
   belong(0, 0, 0);
+
   // Относим каждое входное воздействие в соответствующий класс
   Ts.forEach((value, indexValue) => belong(value, indexValue));
-  return classes.map(value => value.length); // Возвращаем список состоящий из количества элементов в каждом клссе
+
+  // Возвращаем список состоящий из количества элементов в каждом клссе
+  return classes.map(value => value.length);
 }
 
 function learn(action = 0, a = 0.3, b = 0.001, number = 10) {
@@ -224,17 +253,25 @@ function learn(action = 0, a = 0.3, b = 0.001, number = 10) {
         Ts.forEach((x, index) => {
           layerTraining(a, Ts[parseInt(Math.random() * Ts.length)]);
 
-          console.log(x, a, b, number)
+          // Вывод в консоль
+          console.log(
+            'Пример: ' + index, 
+            'Значение: ' + x,
+            'Скорость обучения нейронов: ' + a, 
+            'Темп сокращения скорости обучения: ' + b, 
+            'Количество повторений: ' + number
+          )
+
         });
 
       }
-      a -= b; // Уменьшаем коэффициент скорости обучения
+      // Уменьшаем коэффициент скорости обучения
+      a -= b;
     }
   }
 
-  /*
-    Блок отрисовки результатов интерпритации НС (нейронной сети)
-  */
+
+  // Блок отрисовки результатов интерпритации НС (нейронной сети)
 
   amountClasses(); //Наполняем массив классов
   let t = document.querySelectorAll(".area"), // Записываем в переменную t все строки таблицы
