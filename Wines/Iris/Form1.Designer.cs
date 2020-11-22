@@ -138,9 +138,9 @@
             this.button2.ForeColor = System.Drawing.SystemColors.Control;
             this.button2.Location = new System.Drawing.Point(23, 375);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 42);
+            this.button2.Size = new System.Drawing.Size(123, 42);
             this.button2.TabIndex = 10;
-            this.button2.Text = "Прогноз";
+            this.button2.Text = "Классифицировать";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -163,25 +163,26 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(383, 93);
+            this.textBox6.Location = new System.Drawing.Point(395, 93);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(30, 20);
             this.textBox6.TabIndex = 13;
             this.textBox6.Text = "120";
+            this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(216, 96);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(161, 13);
+            this.label7.Size = new System.Drawing.Size(173, 13);
             this.label7.TabIndex = 14;
-            this.label7.Text = "Кол-во тренировочных данных";
+            this.label7.Text = "Количество обучающей выборки";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(141, 390);
+            this.label8.Location = new System.Drawing.Point(165, 390);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(111, 13);
             this.label8.TabIndex = 15;
@@ -243,7 +244,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(699, 443);
+            this.ClientSize = new System.Drawing.Size(638, 443);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);

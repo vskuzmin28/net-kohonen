@@ -9,6 +9,10 @@ namespace Wines
     public partial class Form1 : Form
     {
         // Информация о винах
+        // 3 класса вина
+        // 0 - столовые вина
+        // 1 - десертные вина
+        // 2 - десертные крепкие вина
         private List<double[]> data;
         // Информация к какому классу относится вино
         private List<int> target;
@@ -74,7 +78,10 @@ namespace Wines
             }
 
             // Тестирование
+            // Если size < 200, остаток идет на тестировать (150-120) = 50 идет на тестирование
+            // Точность
             double acc = 0.0;
+            // Количество данных которые попали в класс исходя из входных данных. Столько сколько сеть могла распознать
             int tr = 0;
             for (int i = size; i < 150; i++)
             {
@@ -83,6 +90,7 @@ namespace Wines
                     tr++;
                 }
             }
+            
             acc = (double)tr / (150.0-size);
             check = true;
             return acc;
@@ -110,6 +118,7 @@ namespace Wines
         // Алгоритм WTA (Победитель)
         public int ForwardProp(double[] x)
         {
+            // индекс победителя
             int idx = 0;
             double max = 0;
             bool check = false;
@@ -144,7 +153,6 @@ namespace Wines
                     check = true;
                 }
             }
-            //WTA
             return idx;
         }
 
@@ -179,7 +187,8 @@ namespace Wines
                 for (int i = 0; i < iter; i++)
                     acc = Fit(size, lr);
 
-                label9.Text = "Точность: " + acc;
+                // На сколько сеть ошиблась
+                label9.Text = "Ошибка: " + (1 - acc);
             }
             catch (Exception ex)
             {
@@ -269,6 +278,11 @@ namespace Wines
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
         {
 
         }
