@@ -1,0 +1,20 @@
+C:\Users\Vados\source\repos\Iris\Iris\bin\Debug\Iris.exe.config
+C:\Users\Vados\source\repos\Iris\Iris\bin\Debug\Iris.exe
+C:\Users\Vados\source\repos\Iris\Iris\bin\Debug\Iris.pdb
+C:\Users\Vados\source\repos\Iris\Iris\obj\Debug\Iris.csprojAssemblyReference.cache
+C:\Users\Vados\source\repos\Iris\Iris\obj\Debug\Iris.Form1.resources
+C:\Users\Vados\source\repos\Iris\Iris\obj\Debug\Iris.Properties.Resources.resources
+C:\Users\Vados\source\repos\Iris\Iris\obj\Debug\Iris.csproj.GenerateResource.cache
+C:\Users\Vados\source\repos\Iris\Iris\obj\Debug\Iris.csproj.CoreCompileInputs.cache
+C:\Users\Vados\source\repos\Iris\Iris\obj\Debug\Iris.exe
+C:\Users\Vados\source\repos\Iris\Iris\obj\Debug\Iris.pdb
+C:\Users\vskuz\OneDrive\Рабочий стол\Кохонен\Iris\Iris\bin\Debug\Iris.exe.config
+C:\Users\vskuz\OneDrive\Рабочий стол\Кохонен\Iris\Iris\bin\Debug\Iris.exe
+C:\Users\vskuz\OneDrive\Рабочий стол\Кохонен\Iris\Iris\bin\Debug\Iris.pdb
+C:\Users\vskuz\OneDrive\Рабочий стол\Кохонен\Iris\Iris\obj\Debug\Iris.csprojAssemblyReference.cache
+C:\Users\vskuz\OneDrive\Рабочий стол\Кохонен\Iris\Iris\obj\Debug\Iris.Properties.Resources.resources
+C:\Users\vskuz\OneDrive\Рабочий стол\Кохонен\Iris\Iris\obj\Debug\Iris.csproj.GenerateResource.cache
+C:\Users\vskuz\OneDrive\Рабочий стол\Кохонен\Iris\Iris\obj\Debug\Iris.csproj.CoreCompileInputs.cache
+C:\Users\vskuz\OneDrive\Рабочий стол\Кохонен\Iris\Iris\obj\Debug\Iris.exe
+C:\Users\vskuz\OneDrive\Рабочий стол\Кохонен\Iris\Iris\obj\Debug\Iris.pdb
+C:\Users\vskuz\OneDrive\Рабочий стол\Кохонен\Iris\Iris\obj\Debug\Wines.Form1.resources
