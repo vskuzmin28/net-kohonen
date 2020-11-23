@@ -194,9 +194,9 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(141, 157);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(69, 13);
+            this.label9.Size = new System.Drawing.Size(53, 13);
             this.label9.TabIndex = 16;
-            this.label9.Text = "Точность: _ ";
+            this.label9.Text = "Ошибка: ";
             // 
             // label10
             // 

@@ -43,6 +43,8 @@ namespace Wines
             w = new double[n, m];
 
             // Получаем данные из файлов
+            // _data - описание оценок
+            // _target - описание классов
             using (StreamReader rd = new StreamReader("wines_data.txt"))
             {
                 string line;
@@ -78,7 +80,7 @@ namespace Wines
             }
 
             // Тестирование
-            // Если size < 200, остаток идет на тестировать (150-120) = 50 идет на тестирование
+            // Если size < 150, остаток идет на тестировать (150-120) = 50 идет на тестирование
             // Точность
             double acc = 0.0;
             // Количество данных которые попали в класс исходя из входных данных. Столько сколько сеть могла распознать
@@ -118,7 +120,7 @@ namespace Wines
         // Алгоритм WTA (Победитель)
         public int ForwardProp(double[] x)
         {
-            // индекс победителя
+            // Индекс победителя
             int idx = 0;
             double max = 0;
             bool check = false;
@@ -161,8 +163,11 @@ namespace Wines
         {
             try
             {
+                // Размер обучающей выборки
                 int size = int.Parse(textBox6.Text);
+                // Весовой коэфициент
                 double lr = double.Parse(textBox5.Text, CultureInfo.GetCultureInfo("en-US"));
+                // Количество эпох
                 int iter = int.Parse(textBox7.Text);
 
                 if (size <= 0 || size > 150) {
@@ -197,6 +202,7 @@ namespace Wines
         }
 
         // Сброс весов сети
+        // Начальная инициализация
         private void set_weights()
         {
             Random rnd = new Random();
@@ -228,7 +234,26 @@ namespace Wines
                     x[3] = double.Parse(textBox4.Text, CultureInfo.GetCultureInfo("en-US"));
 
                     int c = ForwardProp(x);
-                    label8.Text = "Класс: " + (c+1);
+                    int r = c + 1;
+                    string firstCat = "Столовое вино";
+                    string secondCat = "Десертное вино";
+                    string thirdCat = "Крепкое десертное вино";
+                    string outCat = "Не распознано";
+
+                    // Проверка принаджелности классов
+                    if (r == 1) {
+                        outCat = firstCat;
+                    }
+
+                    if (r == 2) {
+                        outCat = secondCat;
+                    }
+
+                    if (r == 3) {
+                        outCat = thirdCat;
+                    }
+
+                    label8.Text = "Класс: " + (r) + " - " + outCat;
                 }
                      
             }catch(Exception ex)

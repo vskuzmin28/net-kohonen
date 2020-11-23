@@ -8,3 +8,13 @@ C:\Users\vskuz\OneDrive\Рабочий стол\Кохонен\Wines\Iris\obj\De
 C:\Users\vskuz\OneDrive\Рабочий стол\Кохонен\Wines\Iris\obj\Debug\Wines.csproj.CoreCompileInputs.cache
 C:\Users\vskuz\OneDrive\Рабочий стол\Кохонен\Wines\Iris\obj\Debug\Wines.exe
 C:\Users\vskuz\OneDrive\Рабочий стол\Кохонен\Wines\Iris\obj\Debug\Wines.pdb
+E:\net-kohonen\Wines\Iris\bin\Debug\Wines.exe.config
+E:\net-kohonen\Wines\Iris\bin\Debug\Wines.exe
+E:\net-kohonen\Wines\Iris\bin\Debug\Wines.pdb
+E:\net-kohonen\Wines\Iris\obj\Debug\Wines.csprojAssemblyReference.cache
+E:\net-kohonen\Wines\Iris\obj\Debug\Wines.Form1.resources
+E:\net-kohonen\Wines\Iris\obj\Debug\Wines.Properties.Resources.resources
+E:\net-kohonen\Wines\Iris\obj\Debug\Wines.csproj.GenerateResource.cache
+E:\net-kohonen\Wines\Iris\obj\Debug\Wines.csproj.CoreCompileInputs.cache
+E:\net-kohonen\Wines\Iris\obj\Debug\Wines.exe
+E:\net-kohonen\Wines\Iris\obj\Debug\Wines.pdb
