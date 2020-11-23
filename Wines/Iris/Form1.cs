@@ -23,7 +23,7 @@ namespace Wines
         private int n;
         // Нейронов на выходе
         private int m;
-        // Для проверки было ли проведено обучение сети или ещё нет
+        // Для проверки было ли проведено обучение сети или нет
         private bool check; 
 
         public Form1()
@@ -80,22 +80,32 @@ namespace Wines
             }
 
             // Тестирование
-            // Если size < 150, остаток идет на тестировать (150-120) = 50 идет на тестирование
+            // Если size < 150, остаток идет на тестировать (150-120) = 30 идет на тестирование
             // Точность
             double acc = 0.0;
             // Количество данных которые попали в класс исходя из входных данных. Столько сколько сеть могла распознать
+            // Кол-во распознаных данных
             int tr = 0;
             for (int i = size; i < 150; i++)
             {
+                // Получаем кол-во данных по алгоритму WTA
                 if(ForwardProp(data[i]) == target[i])
                 {
                     tr++;
                 }
             }
             
+            // Получаем точность
             acc = (double)tr / (150.0-size);
+
             check = true;
             return acc;
+
+            // Получаем погрешность
+            label9.Text = "Погрешность: " + (1 - acc);
+
+            // Выводим точность
+            label5.Text = "Точность: " + (acc);
         }
 
         // Обучение заданного нейрона
@@ -138,6 +148,7 @@ namespace Wines
                 s = 0;
                 for(int j = 0; j < n; j++)
                 {
+                    // Обучается нейрон который победил по формуле
                     s += w[j,i] * x[j]/sq; 
                 }
                 if (check)
@@ -186,14 +197,18 @@ namespace Wines
 
                 set_weights();
 
+                // Точность
                 double acc = 0;
 
                 // Число эпох обучения
                 for (int i = 0; i < iter; i++)
                     acc = Fit(size, lr);
 
-                // На сколько сеть ошиблась
-                label9.Text = "Ошибка: " + (1 - acc);
+                // Считаем погрешность
+                // acc - кол-во данных и вес. коэф.
+                // получаем процент ошибки
+                label9.Text = "Погрешность: " + (1 - acc);
+                label5.Text = "Точность: " + (acc);
             }
             catch (Exception ex)
             {
@@ -253,10 +268,11 @@ namespace Wines
                         outCat = thirdCat;
                     }
 
+                    // Вывод результата
                     label8.Text = "Класс: " + (r) + " - " + outCat;
                 }
                      
-            }catch(Exception ex)
+            } catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -308,6 +324,16 @@ namespace Wines
         }
 
         private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
         {
 
         }
